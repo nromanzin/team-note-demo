@@ -1,13 +1,14 @@
 <h2>Team summary</h2>
+<p>Click on team member name to show more details...</p>
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
   <ng-container matColumnDef="name">
     <th mat-header-cell *matHeaderCellDef>Name</th>
-    <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+    <td mat-cell *matCellDef="let element" (click)="selectTeamMember(element.name)">{{ element.name }}</td>
   </ng-container>
 
   <ng-container matColumnDef="lastMeeting">
     <th mat-header-cell *matHeaderCellDef>Last meeting</th>
-    <td mat-cell *matCellDef="let element">{{ element.lastMeeting | date }}</td>
+    <td mat-cell *matCellDef="let element">{{ element.lastMeetingDate | date }}</td>
   </ng-container>
 
   <ng-container matColumnDef="weather">
@@ -16,7 +17,7 @@
       <mat-icon
         aria-hidden="false"
         aria-label="weather icon"
-        [fontIcon]="element.weather"
+        [fontIcon]="element.lastMeetingWeather"
       ></mat-icon>
     </td>
   </ng-container>

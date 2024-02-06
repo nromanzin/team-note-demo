@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { TeamSummaryComponent } from './team-summary/team-summary.component';
+import { TeamSummaryComponent } from './components/team-summary/team-summary.component';
 
 @Component({
   selector: 'app-root',
