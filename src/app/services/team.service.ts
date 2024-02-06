@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Signal, signal } from '@angular/core';
 
 export enum Weather {
   SUNNY = 'sunny',
@@ -68,16 +68,16 @@ const MOCK_DATA: TeamMember[] = [
 @Injectable({ providedIn: 'root' })
 export class TeamService {
   team: TeamMember[] = MOCK_DATA;
-  selectedTeamMember?: TeamMember;
+  selectedTeamMember = signal({} as TeamMember | undefined)
   getTeam(): TeamMember[] {
     return this.team;
   }
   selectTeamMember(name: string) {
-    this.selectedTeamMember = this.team.find(
+    this.selectedTeamMember.update(() => this.team.find(
       (teamMember: TeamMember) => teamMember.name === name
-    );
+    ));
   }
-  getSelectedTeamMember(): TeamMember | undefined {
+  getSelectedTeamMember(): Signal<TeamMember | undefined> {
     return this.selectedTeamMember;
   }
 }

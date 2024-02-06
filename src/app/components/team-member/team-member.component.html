@@ -1,0 +1,30 @@
+<h2>Team member summary</h2>
+@if (selectedTeamMember()?.name) {
+<p>
+  <strong>Name: </strong>{{ selectedTeamMember()?.name }}<br />
+  <strong>Meetings: </strong><br />
+  @for (meeting of selectedTeamMember()?.meetings; track meeting.date) {
+  <mat-card class="meeting-card">
+    <mat-card-header>
+      <mat-card-title
+        >{{ meeting.date | date }}
+      </mat-card-title>
+      <mat-card-subtitle>
+        <mat-icon
+          aria-hidden="false"
+          aria-label="weather icon"
+          [fontIcon]="meeting.weather"
+        ></mat-icon>
+      </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <p>
+        {{ meeting.report }}
+      </p>
+    </mat-card-content>
+  </mat-card>
+  }
+</p>
+} @else {
+<p>No team member selected</p>
+}
